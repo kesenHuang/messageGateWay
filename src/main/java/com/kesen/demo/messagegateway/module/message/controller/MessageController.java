@@ -109,7 +109,7 @@ public class MessageController {
         // 请求频次限流
         switch (qos) {
             case "1":
-                acquired = distributedLimiter.distributedLimit(getKey(key), limit, "0", "0");
+                acquired = distributedLimiter.distributedLimit(getKey(key), limit, "20", "0");
                 break;
             case "2":
                 acquired = distributedLimiter.distributedLimit(getKey(key), limit, "50", "0");

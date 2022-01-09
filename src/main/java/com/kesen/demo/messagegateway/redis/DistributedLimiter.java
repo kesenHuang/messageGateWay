@@ -48,10 +48,8 @@ public class DistributedLimiter {
         }
 
         if (id == 0L) {
-           // log.info(String.valueOf(currMillSecond) + ": true");
             return true;
         } else {
-           // log.info(String.valueOf(currMillSecond) + ": false");
             return false;
         }
     }

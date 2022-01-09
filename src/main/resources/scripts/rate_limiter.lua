@@ -38,8 +38,8 @@ local function acquire(key, permits_s, curr_mill_second_s, reserved_percent_s, m
     --- 根据和上一次向桶里添加令牌的时间和当前时间差，触发式往桶里添加令牌，并且更新上一次向桶里添加令牌的时间
     --- 如果向桶里添加的令牌数不足一个，则不更新上一次向桶里添加令牌的时间
     if (type(last_mill_second) ~= 'boolean' and last_mill_second ~= nil) then
-        --  local reverse_permits, rest = math.modf(((curr_mill_second - last_mill_second) / secondToMill) * rate)
-        local reverse_permits=math.floor((curr_mill_second-last_mill_second)/secondToMill)*rate
+        local reverse_permits, rest = math.modf(((curr_mill_second - last_mill_second) / secondToMill) * rate)
+       -- local reverse_permits=math.floor((curr_mill_second-last_mill_second)/secondToMill)*rate
         --- 大于0表示不是第一次获取令牌，也没有向桶里添加令牌
         if (reverse_permits > 0) then
             redis.pcall("HSET", key, "last_mill_second", curr_mill_second)
