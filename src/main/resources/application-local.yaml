@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+
+  # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
+spring:
+  redis:
+    host: ${REDIS_HOST:47.113.90.197} # 地址
+    port: ${REDIS_PORT:16379} # 端口
+    database: 0 # 数据库索引
+    lettuce: # 这里标明使用lettuce配置
+      pool:
+        max-active: 8         # 连接池最大连接数
+        max-wait: -1ms        # 连接池最大阻塞等待时间(使用负值表示没有限制
+        max-idle: 5           # 连接池中的最大空闲连接
+        min-idle: 0           # 连接池中的最小空闲连接
+      timeout: 10000ms          # 连接超时时间
+
+message:
+  sms:
+    host: ${MOKE_SERVER_HOST:47.113.90.197}
+    port: ${MOKE_SERVER_PORT:28080}
